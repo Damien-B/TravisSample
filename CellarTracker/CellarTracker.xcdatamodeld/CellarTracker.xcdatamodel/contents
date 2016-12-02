@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="15G31" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Bottle" representedClassName=".Bottle" syncable="YES">
+        <attribute name="capacity" attributeType="Double" minValueString="1" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="count" attributeType="Integer 16" minValueString="0" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="year" optional="YES" attributeType="Integer 16" minValueString="1" defaultValueString="2000" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="cost" toMany="YES" deletionRule="Cascade" destinationEntity="Price" inverseName="ofBottle" inverseEntity="Price" syncable="YES"/>
+        <relationship name="fromDomain" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Domain" inverseName="includeBottle" inverseEntity="Domain" syncable="YES"/>
+        <relationship name="isOfType" maxCount="1" deletionRule="Nullify" destinationEntity="Type" inverseName="ofBottle" inverseEntity="Type" syncable="YES"/>
+    </entity>
+    <entity name="Domain" representedClassName=".Domaine" syncable="YES">
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="includeBottle" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Bottle" inverseName="fromDomain" inverseEntity="Bottle" syncable="YES"/>
+    </entity>
+    <entity name="Price" representedClassName=".Price" syncable="YES">
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="value" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="ofBottle" maxCount="1" deletionRule="Nullify" destinationEntity="Bottle" inverseName="cost" inverseEntity="Bottle" syncable="YES"/>
+    </entity>
+    <entity name="Type" representedClassName=".Type" syncable="YES">
+        <attribute name="value" attributeType="String" syncable="YES"/>
+        <relationship name="ofBottle" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Bottle" inverseName="isOfType" inverseEntity="Bottle" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Bottle" positionX="-65" positionY="-297" width="128" height="180"/>
+        <element name="Domain" positionX="-99" positionY="87" width="128" height="103"/>
+        <element name="Price" positionX="198" positionY="-193" width="128" height="103"/>
+        <element name="Type" positionX="135" positionY="-0" width="128" height="75"/>
+    </elements>
+</model>
