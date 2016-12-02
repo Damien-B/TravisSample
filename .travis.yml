@@ -4,7 +4,7 @@ branches:
 	only:
 		- develop
 		- master
-notifications:
+notification:
 	email: false
 before_install:
 	- gem install bundler
